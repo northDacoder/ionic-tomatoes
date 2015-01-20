@@ -1,5 +1,22 @@
 angular.module('starter.controllers', [])
 
+app.controller('movieController', function($scope, rotten_tomatoes){
+
+    $scope.title = "";
+
+    $scope.search = function() {
+        var query = $scope.title;
+        var nummovies = $scope.limit;
+
+        rotten_tomatoes.fetchMovie(query, nummovies, function(data){
+
+            var result = data.movies;
+            $scope.result = result;
+
+        });
+    }
+})
+
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
   // Form data for the login modal
   $scope.loginData = {};
